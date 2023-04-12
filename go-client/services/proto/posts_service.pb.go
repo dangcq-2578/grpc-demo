@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.15.8
-// source: posts_service.proto
+// source: proto/posts_service.proto
 
-package __
+package services
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -33,7 +33,7 @@ type Post struct {
 func (x *Post) Reset() {
 	*x = Post{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_posts_service_proto_msgTypes[0]
+		mi := &file_proto_posts_service_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -46,7 +46,7 @@ func (x *Post) String() string {
 func (*Post) ProtoMessage() {}
 
 func (x *Post) ProtoReflect() protoreflect.Message {
-	mi := &file_posts_service_proto_msgTypes[0]
+	mi := &file_proto_posts_service_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +59,7 @@ func (x *Post) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Post.ProtoReflect.Descriptor instead.
 func (*Post) Descriptor() ([]byte, []int) {
-	return file_posts_service_proto_rawDescGZIP(), []int{0}
+	return file_proto_posts_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Post) GetId() int32 {
@@ -92,7 +92,7 @@ type Empty struct {
 func (x *Empty) Reset() {
 	*x = Empty{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_posts_service_proto_msgTypes[1]
+		mi := &file_proto_posts_service_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -105,7 +105,7 @@ func (x *Empty) String() string {
 func (*Empty) ProtoMessage() {}
 
 func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_posts_service_proto_msgTypes[1]
+	mi := &file_proto_posts_service_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118,7 +118,7 @@ func (x *Empty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Empty.ProtoReflect.Descriptor instead.
 func (*Empty) Descriptor() ([]byte, []int) {
-	return file_posts_service_proto_rawDescGZIP(), []int{1}
+	return file_proto_posts_service_proto_rawDescGZIP(), []int{1}
 }
 
 type PostList struct {
@@ -132,7 +132,7 @@ type PostList struct {
 func (x *PostList) Reset() {
 	*x = PostList{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_posts_service_proto_msgTypes[2]
+		mi := &file_proto_posts_service_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -145,7 +145,7 @@ func (x *PostList) String() string {
 func (*PostList) ProtoMessage() {}
 
 func (x *PostList) ProtoReflect() protoreflect.Message {
-	mi := &file_posts_service_proto_msgTypes[2]
+	mi := &file_proto_posts_service_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -158,7 +158,7 @@ func (x *PostList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostList.ProtoReflect.Descriptor instead.
 func (*PostList) Descriptor() ([]byte, []int) {
-	return file_posts_service_proto_rawDescGZIP(), []int{2}
+	return file_proto_posts_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PostList) GetPosts() []*Post {
@@ -168,43 +168,44 @@ func (x *PostList) GetPosts() []*Post {
 	return nil
 }
 
-var File_posts_service_proto protoreflect.FileDescriptor
+var File_proto_posts_service_proto protoreflect.FileDescriptor
 
-var file_posts_service_proto_rawDesc = []byte{
-	0x0a, 0x13, 0x70, 0x6f, 0x73, 0x74, 0x73, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x46, 0x0a, 0x04, 0x50, 0x6f, 0x73, 0x74, 0x12, 0x0e, 0x0a,
-	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a,
-	0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69,
-	0x74, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x22, 0x07, 0x0a,
-	0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x27, 0x0a, 0x08, 0x50, 0x6f, 0x73, 0x74, 0x4c, 0x69,
-	0x73, 0x74, 0x12, 0x1b, 0x0a, 0x05, 0x70, 0x6f, 0x73, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x05, 0x2e, 0x50, 0x6f, 0x73, 0x74, 0x52, 0x05, 0x70, 0x6f, 0x73, 0x74, 0x73, 0x32,
-	0x2e, 0x0a, 0x0b, 0x50, 0x6f, 0x73, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x1f,
-	0x0a, 0x08, 0x47, 0x65, 0x74, 0x50, 0x6f, 0x73, 0x74, 0x73, 0x12, 0x06, 0x2e, 0x45, 0x6d, 0x70,
-	0x74, 0x79, 0x1a, 0x09, 0x2e, 0x50, 0x6f, 0x73, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x00, 0x42,
-	0x03, 0x5a, 0x01, 0x2e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+var file_proto_posts_service_proto_rawDesc = []byte{
+	0x0a, 0x19, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x70, 0x6f, 0x73, 0x74, 0x73, 0x5f, 0x73, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x46, 0x0a, 0x04, 0x50,
+	0x6f, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e,
+	0x74, 0x65, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74,
+	0x65, 0x6e, 0x74, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x27, 0x0a, 0x08,
+	0x50, 0x6f, 0x73, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x05, 0x70, 0x6f, 0x73, 0x74,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x05, 0x2e, 0x50, 0x6f, 0x73, 0x74, 0x52, 0x05,
+	0x70, 0x6f, 0x73, 0x74, 0x73, 0x32, 0x2e, 0x0a, 0x0b, 0x50, 0x6f, 0x73, 0x74, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x12, 0x1f, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x50, 0x6f, 0x73, 0x74, 0x73,
+	0x12, 0x06, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x09, 0x2e, 0x50, 0x6f, 0x73, 0x74, 0x4c,
+	0x69, 0x73, 0x74, 0x22, 0x00, 0x42, 0x0b, 0x5a, 0x09, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x73, 0x2f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_posts_service_proto_rawDescOnce sync.Once
-	file_posts_service_proto_rawDescData = file_posts_service_proto_rawDesc
+	file_proto_posts_service_proto_rawDescOnce sync.Once
+	file_proto_posts_service_proto_rawDescData = file_proto_posts_service_proto_rawDesc
 )
 
-func file_posts_service_proto_rawDescGZIP() []byte {
-	file_posts_service_proto_rawDescOnce.Do(func() {
-		file_posts_service_proto_rawDescData = protoimpl.X.CompressGZIP(file_posts_service_proto_rawDescData)
+func file_proto_posts_service_proto_rawDescGZIP() []byte {
+	file_proto_posts_service_proto_rawDescOnce.Do(func() {
+		file_proto_posts_service_proto_rawDescData = protoimpl.X.CompressGZIP(file_proto_posts_service_proto_rawDescData)
 	})
-	return file_posts_service_proto_rawDescData
+	return file_proto_posts_service_proto_rawDescData
 }
 
-var file_posts_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_posts_service_proto_goTypes = []interface{}{
+var file_proto_posts_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_proto_posts_service_proto_goTypes = []interface{}{
 	(*Post)(nil),     // 0: Post
 	(*Empty)(nil),    // 1: Empty
 	(*PostList)(nil), // 2: PostList
 }
-var file_posts_service_proto_depIdxs = []int32{
+var file_proto_posts_service_proto_depIdxs = []int32{
 	0, // 0: PostList.posts:type_name -> Post
 	1, // 1: PostService.GetPosts:input_type -> Empty
 	2, // 2: PostService.GetPosts:output_type -> PostList
@@ -215,13 +216,13 @@ var file_posts_service_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_posts_service_proto_init() }
-func file_posts_service_proto_init() {
-	if File_posts_service_proto != nil {
+func init() { file_proto_posts_service_proto_init() }
+func file_proto_posts_service_proto_init() {
+	if File_proto_posts_service_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_posts_service_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_proto_posts_service_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Post); i {
 			case 0:
 				return &v.state
@@ -233,7 +234,7 @@ func file_posts_service_proto_init() {
 				return nil
 			}
 		}
-		file_posts_service_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_proto_posts_service_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Empty); i {
 			case 0:
 				return &v.state
@@ -245,7 +246,7 @@ func file_posts_service_proto_init() {
 				return nil
 			}
 		}
-		file_posts_service_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_proto_posts_service_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PostList); i {
 			case 0:
 				return &v.state
@@ -262,18 +263,18 @@ func file_posts_service_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_posts_service_proto_rawDesc,
+			RawDescriptor: file_proto_posts_service_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_posts_service_proto_goTypes,
-		DependencyIndexes: file_posts_service_proto_depIdxs,
-		MessageInfos:      file_posts_service_proto_msgTypes,
+		GoTypes:           file_proto_posts_service_proto_goTypes,
+		DependencyIndexes: file_proto_posts_service_proto_depIdxs,
+		MessageInfos:      file_proto_posts_service_proto_msgTypes,
 	}.Build()
-	File_posts_service_proto = out.File
-	file_posts_service_proto_rawDesc = nil
-	file_posts_service_proto_goTypes = nil
-	file_posts_service_proto_depIdxs = nil
+	File_proto_posts_service_proto = out.File
+	file_proto_posts_service_proto_rawDesc = nil
+	file_proto_posts_service_proto_goTypes = nil
+	file_proto_posts_service_proto_depIdxs = nil
 }

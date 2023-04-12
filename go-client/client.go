@@ -6,13 +6,13 @@ import (
 	"log"
 	"time"
 
-	"github.com/dangcq-2578/grpc-demo/services"
+	services "github.com/dangcq-2578/grpc-demo/services"
 
 	"google.golang.org/grpc"
 )
 
 var (
-	severURL = "localhost:9321"
+	severURL = "localhost:9123"
 )
 
 func getgRPCClient() *grpc.ClientConn {
