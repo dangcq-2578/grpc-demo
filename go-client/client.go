@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	services "github.com/dangcq-2578/grpc-demo/services"
+	services "github.com/dangcq-2578/grpc-demo/proto"
 
 	"google.golang.org/grpc"
 )
@@ -34,15 +34,15 @@ func main() {
 
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 
-	posts, err := client.GetPost(ctx, &services.Empty{})
+	posts, err := client.GetPosts(ctx, &services.Empty{})
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	for _, post := range posts.getPosts() {
+	for _, post := range posts.GetPosts() {
 		fmt.Println(post.Id)
 		fmt.Println(post.Title)
-		fmt.Println(post.Text)
+		fmt.Println(post.Content)
 	}
 }
