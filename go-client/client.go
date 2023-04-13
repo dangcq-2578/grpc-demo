@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/http"
 	"time"
 
 	services "github.com/dangcq-2578/grpc-demo/proto"
@@ -25,7 +26,7 @@ func getgRPCClient() *grpc.ClientConn {
 	return conn
 }
 
-func main() {
+func getPostgRPC() *services.PostList {
 	conn := getgRPCClient()
 
 	defer conn.Close()
@@ -40,9 +41,19 @@ func main() {
 		log.Fatal(err)
 	}
 
-	for _, post := range posts.GetPosts() {
-		fmt.Println(post.Id)
-		fmt.Println(post.Title)
-		fmt.Println(post.Content)
-	}
+	return posts
+}
+
+func main() {
+	http.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
+		posts := getPostgRPC()
+
+		for _, post := range posts.GetPosts() {
+			fmt.Fprintln(w, post.Id)
+			fmt.Fprintln(w, post.Title)
+			fmt.Fprintln(w, post.Content)
+		}
+	})
+
+	http.ListenAndServe(":8081", nil)
 }

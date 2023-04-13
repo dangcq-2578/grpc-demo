@@ -6,8 +6,8 @@ const proto = protoLoader.loadSync(path.join(__dirname, "..", "proto/posts_servi
 const definition = grpc.loadPackageDefinition(proto);
 
 const postList = [
-    { id: 1, title: 'Mình đã kiếm 1 triệu đô trên Viblo như thế nào?', content: 'This is content'},
-    { id: 2, title:'Điều mà người làm dev nào cũng cần biết - SunCI', content: 'This is Sun* CI'},
+    { id: 1, title: 'Mình đã kiếm 1 triệu đô trên Viblo như thế nào?', content: 'Ciblo vô địch'},
+    { id: 2, title:'Điều mà người làm QA nào cũng cần biết - Atlas', content: 'Atlas carrying the world'},
 ];
 
 const getPosts = (call, callback) => {
