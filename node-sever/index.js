@@ -11,13 +11,15 @@ const postList = [
 ];
 
 const getPosts = (call, callback) => {
-    callback(null, {posts: postList })
+    callback(null, { posts: postList })
 }
 
 const severURL = 'localhost:9123';
 const server = new grpc.Server();
 
-server.addService(definition.PostService.service, { getPosts });
+server.addService(definition.PostService.service, {
+    getPosts: getPosts
+});
 server.bindAsync(severURL, grpc.ServerCredentials.createInsecure(), port => {
     console.log(`Sever running on ${severURL}`);
     server.start();
