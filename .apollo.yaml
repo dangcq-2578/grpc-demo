@@ -1,0 +1,6 @@
+config:
+  ignore:
+    files:
+      - /proto/posts_service.proto
+    commits:
+      - 022dfc982119c235d45daeef7189d52764dfbf48
