@@ -1,0 +1,106 @@
+name: CI/CD
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+      - master
+  pull_request:
+    branches:
+      - develop
+      - master
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  commit-lint:
+    runs-on: runner-github-actions-private
+    container: sunci/commitlint:latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: CommitLint
+        run: |
+          echo "module.exports = {extends:['@commitlint/config-conventional']}" > commitlint.config.js
+          export COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")
+          echo "$COMMIT_MESSAGE" | commitlint
+
+  node:
+    runs-on: self-host-runner-private
+    container: node:16-alpine
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ./web/node_modules
+          key: node_modules_${{ hashFiles('**/web/yarn.lock') }}
+          restore-keys: |
+            node_modules_
+
+      - name: Yarn install
+        run: |
+          yarn config set network-timeout 300000
+          yarn
+
+      - name: ESlint
+        run: |
+          yarn prepare
+          yarn lint --max-warnings 0
+
+  php:
+    runs-on: self-host-runner-private-1
+    container: sunasteriskrnd/php-workspace:8.1-alpine
+    services:
+      redis:
+        image: redis:alpine
+      postgres:
+        image: postgres:12-alpine
+        env:
+          POSTGRES_DB: apollo_testing
+          POSTGRES_USER: apollo
+          POSTGRES_PASSWORD: secret
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cache composer vendor
+        uses: actions/cache@v4
+        with:
+          path: ./api/vendor
+          key: composer_${{ hashFiles('./api/composer.lock') }}
+          restore-keys: |
+            composer_
+
+      - name: Composer install
+        run: |
+          composer install -d api
+
+      - name: PHP CodeSniffer
+        run: composer sniff -d api
+
+
+  staging:
+    if: github.ref_name == 'develop' && github.event_name == 'push'
+    needs: [commit-lint, node, php]
+    uses: ./.github/workflows/build.yml
+    with:
+      environment: staging
+      tag: develop
+      unique_tag_suffix: -stg
+      app_url: https://apollo-staging.sun-asterisk.vn
+    secrets: inherit
+
+  production:
+    if: github.ref_name == 'master' && github.event_name == 'push'
+    needs: [commit-lint, node, php]
+    uses: ./.github/workflows/build.yml
+    with:
+      environment: production
+      tag: stable
+      unique_tag_suffix: -prod
+      app_url: https://apollo.sun-asterisk.vn
+    secrets: inherit
