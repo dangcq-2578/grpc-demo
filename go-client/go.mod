@@ -6,7 +6,6 @@ require (
 	github.com/framgia/apollo-worker/github/rpc v0.0.0
 	github.com/framgia/apollo-worker/githublanguage/rpc v0.0.0
 	github.com/framgia/apollo-worker/synchistory/rpc v0.0.0
-	github.com/lib/pq v1.10.9
 	github.com/spaolacci/murmur3 v1.1.0
 	github.com/zeromicro/go-queue v1.1.8
 	github.com/zeromicro/go-zero v1.5.4
